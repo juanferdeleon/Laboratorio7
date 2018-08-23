@@ -1,16 +1,16 @@
-package sample.lists;
+package lists;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import sample.items.Item;
+import items.Item;
 
 public class List {
 
     //Atributos
-    private SimpleStringProperty listName;
-    private SimpleStringProperty listDescription;
+    private String listName;
+    private String listDescription;
     private ObservableList<Item> itemsList;
     private SimpleIntegerProperty pendingItems;
     private SimpleDoubleProperty pendingEstimate;
@@ -18,19 +18,16 @@ public class List {
     //Constructor
     public List(String listName, String listDescription){
 
-        this.listName = new SimpleStringProperty();
-        this.listDescription = new SimpleStringProperty();
-
         this.setListName(listName);
         this.setListDescription(listDescription);
     }
 
     private void setListName(String listName){
-        this.listName.set(listName);
+        this.listName = listName;
     }
 
     private void setListDescription(String listDescription){
-        this.listDescription.set(listDescription);
+        this.listDescription = listDescription;
     }
 
     public void addItem(Item item){
@@ -40,18 +37,28 @@ public class List {
     }
 
     public void setPendingItems(){//Cuenta cuantos articulos hay pendientes
-        int ctr = 0;
+        SimpleIntegerProperty ctr = new SimpleIntegerProperty();
         for (Item item: itemsList) {
             if (item.getIsPending()){
-                ctr++;
+                ctr.add(item.getItemQuant());
             }
         }
-        this.pendingItems.set(ctr);
+        this.pendingItems = ctr;
     }
 
-    public void setPendingEstimate(){
+    public void setPendingEstimate(){//Cuenta cuanto es la cantidad estimada de dinero
+        SimpleDoubleProperty ctr = new SimpleDoubleProperty();
         for (Item item: itemsList) {
-
+            ctr.add(item.getItemPrice());
         }
+        this.pendingEstimate = ctr;
+    }
+
+    public String getListName(){
+        return this.listName;
+    }
+
+    public String getListDescription(){
+        return this.listDescription;
     }
 }

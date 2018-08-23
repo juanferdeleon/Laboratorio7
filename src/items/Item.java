@@ -1,4 +1,4 @@
-package sample.items;
+package items;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -7,14 +7,13 @@ import javafx.beans.property.SimpleStringProperty;
 public class Item {
 
     private SimpleStringProperty itemName;
-    private SimpleIntegerProperty itemQuant;
-    private SimpleDoubleProperty itemPrice;
+    private Integer itemQuant;
+    private Double itemPrice;
+    private Double itemTotal;
     private Boolean isPending = true;
 
     public Item(String itemName, Integer itemQuant, Double itemPrice){
         this.itemName = new SimpleStringProperty();
-        this.itemQuant = new SimpleIntegerProperty();
-        this.itemPrice = new SimpleDoubleProperty();
 
         this.setItemName(itemName);
         this.setItemQuant(itemQuant);
@@ -26,11 +25,15 @@ public class Item {
     }
 
     private void setItemQuant(Integer itemQuant){
-        this.itemQuant.set(itemQuant);
+        this.itemQuant = itemQuant;
     }
 
     private void setItemPrice(Double itemPrice){
-        this.itemPrice.set(itemPrice);
+        this.itemPrice = itemPrice;
+    }
+
+    private void setItemTotal(){
+        this.itemTotal = this.getItemQuant() * this.getItemPrice();
     }
 
     public void setIsPending(){
@@ -41,7 +44,11 @@ public class Item {
         return this.isPending;
     }
 
-    public SimpleDoubleProperty getItemPrice(){
+    public Integer getItemQuant(){
+        return this.itemQuant;
+    }
+
+    public Double getItemPrice(){
         return this.itemPrice;
     }
 }
