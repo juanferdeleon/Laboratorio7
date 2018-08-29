@@ -9,26 +9,29 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MiListaController">
    <children>
-      <Button layoutX="34.0" layoutY="45.0" mnemonicParsing="false" onAction="#newListWindow" text="&lt;">
+      <Button layoutX="54.0" layoutY="45.0" mnemonicParsing="false" onAction="#sampleWindow" text="&lt;">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
-      <Label fx:id="listName" layoutX="84.0" layoutY="41.0" prefHeight="30.0" prefWidth="200.0" text="ListName">
+      <Label fx:id="listName" layoutX="84.0" layoutY="41.0" prefHeight="31.0" prefWidth="480.0" text="ListName">
          <font>
             <Font name="Century Gothic" size="24.0" />
          </font></Label>
-      <Button layoutX="587.0" layoutY="44.0" mnemonicParsing="false" onAction="#addItem" text="+ Articulo">
+      <Button layoutX="587.0" layoutY="44.0" mnemonicParsing="false" onAction="#newItem" text="+ Articulo">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font></Button>
-      <Label fx:id="listDesc" layoutX="32.0" layoutY="86.0" prefHeight="102.0" prefWidth="628.0" text="ListDescription" />
-      <TableView layoutX="34.0" layoutY="199.0" prefHeight="200.0" prefWidth="532.0" AnchorPane.rightAnchor="134.0">
+      <Label fx:id="listDesc" layoutX="32.0" layoutY="86.0" prefHeight="102.0" prefWidth="628.0" text="ListDescription">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font></Label>
+      <TableView fx:id="itemsTable" layoutX="34.0" layoutY="199.0" prefHeight="200.0" prefWidth="532.0" AnchorPane.rightAnchor="134.0">
         <columns>
-          <TableColumn maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Articulo" />
-          <TableColumn maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Cantidad" />
-            <TableColumn maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Precio C/U" />
-            <TableColumn maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Total" />
-            <TableColumn maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Estado" />
+          <TableColumn fx:id="itemName" maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Articulo" />
+          <TableColumn fx:id="itemQuant" maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Cantidad" />
+            <TableColumn fx:id="itemPrice" maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Precio C/U" />
+            <TableColumn fx:id="itemTotal" maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Total" />
+            <TableColumn fx:id="itemState" maxWidth="106.0" minWidth="106.0" prefWidth="106.0" resizable="false" text="Estado" />
         </columns>
       </TableView>
       <Button layoutX="582.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="81.0" text="Pendiente">

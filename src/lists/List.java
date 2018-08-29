@@ -3,6 +3,7 @@ package lists;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import items.Item;
 
@@ -11,9 +12,9 @@ public class List {
     //Atributos
     private String listName;
     private String listDescription;
-    private ObservableList<Item> itemsList;
-    private SimpleIntegerProperty pendingItems;
-    private SimpleDoubleProperty pendingEstimate;
+    private ObservableList<Item> itemsList = FXCollections.observableArrayList();
+    private Integer pendingItems;
+    private Double pendingEstimate;
 
     //Constructor
     public List(String listName, String listDescription){
@@ -37,19 +38,19 @@ public class List {
     }
 
     public void setPendingItems(){//Cuenta cuantos articulos hay pendientes
-        SimpleIntegerProperty ctr = new SimpleIntegerProperty();
+        Integer ctr = 0;
         for (Item item: itemsList) {
             if (item.getIsPending()){
-                ctr.add(item.getItemQuant());
+                ctr++;
             }
         }
         this.pendingItems = ctr;
     }
 
     public void setPendingEstimate(){//Cuenta cuanto es la cantidad estimada de dinero
-        SimpleDoubleProperty ctr = new SimpleDoubleProperty();
+        Double ctr = 0.0;
         for (Item item: itemsList) {
-            ctr.add(item.getItemPrice());
+            ctr += item.getItemPrice();
         }
         this.pendingEstimate = ctr;
     }
@@ -60,5 +61,9 @@ public class List {
 
     public String getListDescription(){
         return this.listDescription;
+    }
+
+    public ObservableList<Item> getItemsList(){
+        return this.itemsList;
     }
 }

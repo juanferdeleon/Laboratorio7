@@ -30,30 +30,43 @@ public class Controller {
     @FXML
     TableColumn thirdColEst;
 
+    ObservableList<List> listsData = FXCollections.observableArrayList();
+
     @FXML
     public void initialize(){
-        ObservableList<List> data = FXCollections.observableArrayList();
 
         firstColName.setCellValueFactory(new PropertyValueFactory<List, String>("listName"));
 
         secColPend.setCellValueFactory(new PropertyValueFactory<List, String>("pendingItems"));
 
         thirdColEst.setCellValueFactory(new PropertyValueFactory<List, String>("pendingEstimate"));
+
+        listsTable.setItems(listsData);
     }
 
     public void newListWindow(ActionEvent event){
         Parent root1;
         try {
+            //Cierra la actual ventana
             ((Node)event.getSource()).getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NuevaLista.fxml"));
             root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Nueva Lista");
             stage.setScene(new Scene(root1, 700, 500));
+
+            //Envia la lista de listas al siguiente controller
+            NuevaListaController nuevaListaController = fxmlLoader.getController();
+            nuevaListaController.setListsData(listsData);
+
+            //Muestra la nueva ventana
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
+    public void setListsData(ObservableList<List> listsData){
+        this.listsData = listsData;
+    }
 }

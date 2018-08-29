@@ -1,27 +1,22 @@
 package items;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 public class Item {
 
-    private SimpleStringProperty itemName;
+    private String itemName;
     private Integer itemQuant;
     private Double itemPrice;
     private Double itemTotal;
     private Boolean isPending = true;
 
     public Item(String itemName, Integer itemQuant, Double itemPrice){
-        this.itemName = new SimpleStringProperty();
-
         this.setItemName(itemName);
         this.setItemQuant(itemQuant);
         this.setItemPrice(itemPrice);
+        this.setItemTotal();
     }
 
     private void setItemName(String itemName){
-        this.itemName.set(itemName);
+        this.itemName = itemName;
     }
 
     private void setItemQuant(Integer itemQuant){
@@ -38,6 +33,14 @@ public class Item {
 
     public void setIsPending(){
         this.isPending = !isPending;
+    }
+
+    public String getItemName(){
+        return this.itemName;
+    }
+
+    public Double getItemTotal(){
+        return this.itemTotal;
     }
 
     public boolean getIsPending(){
