@@ -24,11 +24,11 @@
             <TableColumn fx:id="thirdColEst" maxWidth="195.0" minWidth="195.0" prefWidth="195.0" resizable="false" text="Estimado" />
         </columns>
       </TableView>
-      <Button fx:id="edit" layoutX="507.0" layoutY="414.0" mnemonicParsing="false" text="Editar">
+      <Button fx:id="edit" layoutX="507.0" layoutY="414.0" mnemonicParsing="false" onAction="#editList" text="Editar">
          <font>
             <Font name="Century Gothic" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="delete" layoutX="571.0" layoutY="413.0" mnemonicParsing="false" text="Eliminar" />
+      <Button fx:id="delete" layoutX="571.0" layoutY="413.0" mnemonicParsing="false" onAction="#deleteList" text="Eliminar" />
    </children>
 </AnchorPane>

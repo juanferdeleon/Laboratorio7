@@ -55,6 +55,7 @@ public class List {
         Double ctr = 0.0;
         for (Item item: itemsList) {
             if (item.getIsPending()) {
+                item.setItemTotal();
                 ctr += item.getItemPrice() * item.getItemQuant();
             }
         }

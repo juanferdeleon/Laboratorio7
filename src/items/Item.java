@@ -27,7 +27,7 @@ public class Item {
         this.itemPrice = itemPrice;
     }
 
-    private void setItemTotal(){
+    public void setItemTotal(){
         this.itemTotal = this.getItemQuant() * this.getItemPrice();
     }
 

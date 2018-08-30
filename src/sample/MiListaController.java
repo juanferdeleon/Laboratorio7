@@ -128,23 +128,27 @@ public class MiListaController {
     }
 
     public void pendingItem(ActionEvent event){
-        itemsTable.getSelectionModel().getSelectedItem().isPending();
+        itemsTable.getSelectionModel().getSelectedItem().isNotPending();
         itemsTable.refresh();
         for (List list: listsData) {
-            if (list.getListName().equals(listName)){
+            if (list.getListName().equals(listName.getText())){
                 list.setItemsList(itemsData);
-                this.pendingAmount.setText("Pendiente: " + list.getPendingEstimate());
+                list.setPendingItems();
+                list.setPendingEstimate();
+                pendingAmount.setText("Pendiente: " + list.getPendingEstimate());
             }
         }
     }
 
     public void notPendingItem(ActionEvent event){
-        itemsTable.getSelectionModel().getSelectedItem().isNotPending();
+        itemsTable.getSelectionModel().getSelectedItem().isPending();
         itemsTable.refresh();
         for (List list: listsData) {
-            if (list.getListName().equals(listName)){
+            if (list.getListName().equals(listName.getText())){
                 list.setItemsList(itemsData);
-            }
+                list.setPendingItems();
+                list.setPendingEstimate();
+                this.pendingAmount.setText("Pendiente: " + list.getPendingEstimate());            }
         }
     }
 

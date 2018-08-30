@@ -66,6 +66,40 @@ public class Controller {
         }
     }
 
+    public void editList(ActionEvent event){
+        Parent root1;
+        try {
+            //Cierra la actual ventana
+            ((Node)event.getSource()).getScene().getWindow().hide();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MiLista.fxml"));
+            root1 = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Mi Lista");
+            stage.setScene(new Scene(root1, 700, 500));
+
+            //Envia la lista de listas al siguiente controller
+            MiListaController miListaController = fxmlLoader.getController();
+            miListaController.setListsData(listsData);
+
+            miListaController.setItemsData(listsTable.getSelectionModel().getSelectedItem().getItemsList());
+            miListaController.setListName(listsTable.getSelectionModel().getSelectedItem().getListName());
+            miListaController.setListDesc(listsTable.getSelectionModel().getSelectedItem().getListDescription());
+            miListaController.pendingAmount.setText("Pendiente: " + listsTable.getSelectionModel().getSelectedItem().getPendingEstimate());
+            miListaController.initialize();
+
+
+
+            //Muestra la nueva ventana
+            stage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteList(ActionEvent event){
+        listsData.remove(listsTable.getSelectionModel().getSelectedItem());
+    }
+
     public void setListsData(ObservableList<List> listsData){
         this.listsData = listsData;
     }
