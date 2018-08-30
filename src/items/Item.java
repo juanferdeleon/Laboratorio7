@@ -31,8 +31,16 @@ public class Item {
         this.itemTotal = this.getItemQuant() * this.getItemPrice();
     }
 
-    public void setIsPending(){
-        this.isPending = !isPending;
+    public void isPending(){
+        if (this.isPending){
+            this.isPending = !isPending;
+        }
+    }
+
+    public void isNotPending(){
+        if (!this.isPending){
+            this.isPending = !isPending;
+        }
     }
 
     public String getItemName(){

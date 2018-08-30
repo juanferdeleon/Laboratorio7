@@ -41,6 +41,22 @@ public class NuevoArticuloController {
             Stage stage = new Stage();
             stage.setTitle("Mi Lista");
             stage.setScene(new Scene(root3, 700, 500));
+
+            //Envia toda la informacion a la nueva ventana
+            MiListaController miListaController = fxmlLoader.getController();
+            miListaController.setListsData(listsData);
+            for (List list: listsData) {
+                if (list.getListName() == selectedList){
+                    miListaController.setListName(list.getListName());
+                    miListaController.setListDesc(list.getListDescription());
+                    miListaController.setItemsData(list.getItemsList());
+                    miListaController.pendingAmount.setText("Pendiente: " + list.getPendingEstimate());
+                }
+            }
+
+            //Establece la lista de articulos en la nueva ventana
+            miListaController.initialize();
+
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
@@ -76,6 +92,7 @@ public class NuevoArticuloController {
                     miListaController.setListName(list.getListName());
                     miListaController.setListDesc(list.getListDescription());
                     miListaController.setItemsData(list.getItemsList());
+                    miListaController.pendingAmount.setText("Pendiente: " + list.getPendingEstimate());
                 }
             }
 

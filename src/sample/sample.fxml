@@ -20,8 +20,8 @@
       <TableView fx:id="listsTable" layoutX="59.0" layoutY="121.0" prefHeight="276.0" prefWidth="578.0">
         <columns>
           <TableColumn fx:id="firstColName" maxWidth="196.0" minWidth="196.0" prefWidth="196.0" resizable="false" text="Nombre" />
-          <TableColumn fx:id="secColPend" maxWidth="196.0" minWidth="196.0" prefWidth="196.0" resizable="false" text="Pendientes" />
-            <TableColumn fx:id="thirdColEst" maxWidth="196.0" minWidth="196.0" prefWidth="196.0" resizable="false" text="Estimado" />
+          <TableColumn fx:id="secColPend" maxWidth="196.0" minWidth="196.0" prefWidth="196.0" resizable="false" text="Articulos Pendientes" />
+            <TableColumn fx:id="thirdColEst" maxWidth="195.0" minWidth="195.0" prefWidth="195.0" resizable="false" text="Estimado" />
         </columns>
       </TableView>
       <Button fx:id="edit" layoutX="507.0" layoutY="414.0" mnemonicParsing="false" text="Editar">

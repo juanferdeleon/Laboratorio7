@@ -31,6 +31,10 @@ public class List {
         this.listDescription = listDescription;
     }
 
+    public void setItemsList(ObservableList<Item> itemsList){
+        this.itemsList = itemsList;
+    }
+
     public void addItem(Item item){
         this.itemsList.add(item);
         this.setPendingItems();
@@ -41,7 +45,7 @@ public class List {
         Integer ctr = 0;
         for (Item item: itemsList) {
             if (item.getIsPending()){
-                ctr++;
+                ctr+= item.getItemQuant();
             }
         }
         this.pendingItems = ctr;
@@ -50,7 +54,9 @@ public class List {
     public void setPendingEstimate(){//Cuenta cuanto es la cantidad estimada de dinero
         Double ctr = 0.0;
         for (Item item: itemsList) {
-            ctr += item.getItemPrice();
+            if (item.getIsPending()) {
+                ctr += item.getItemPrice() * item.getItemQuant();
+            }
         }
         this.pendingEstimate = ctr;
     }
@@ -65,5 +71,13 @@ public class List {
 
     public ObservableList<Item> getItemsList(){
         return this.itemsList;
+    }
+
+    public Integer getPendingItems(){
+        return this.pendingItems;
+    }
+
+    public Double getPendingEstimate(){
+        return this.pendingEstimate;
     }
 }

@@ -27,12 +27,19 @@ public class NuevaListaController {
     public void sampleWindow(ActionEvent event){
         Parent root1;
         try {
+            //Crea nueva ventana
             ((Node)event.getSource()).getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
             root1 = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Mis Listas");
             stage.setScene(new Scene(root1, 700, 500));
+
+            //Envia la informacion de listas y la despliega
+            Controller controller = fxmlLoader.getController();
+            controller.setListsData(listsData);
+            controller.initialize();
+
             stage.show();
         }catch (IOException e){
             e.printStackTrace();

@@ -27,7 +27,10 @@ public class MiListaController {
     Label listDesc;
 
     @FXML
-    TableView itemsTable;
+    Label pendingAmount;
+
+    @FXML
+    TableView<Item> itemsTable;
 
     @FXML
     TableColumn itemName;
@@ -80,6 +83,7 @@ public class MiListaController {
     public void sampleWindow(ActionEvent event){
         Parent root2;
         try {
+            //Crea nueva ventana
             ((Node)event.getSource()).getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sample.fxml"));
             root2 = fxmlLoader.load();
@@ -87,9 +91,11 @@ public class MiListaController {
             stage.setTitle("Mis Listas");
             stage.setScene(new Scene(root2, 700, 500));
 
+            //Envia la informacion de las listas
             Controller controller = fxmlLoader.getController();
             controller.setListsData(listsData);
 
+            //Despliega las listas
             controller.initialize();
 
             stage.show();
@@ -118,6 +124,27 @@ public class MiListaController {
             stage.show();
         }catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    public void pendingItem(ActionEvent event){
+        itemsTable.getSelectionModel().getSelectedItem().isPending();
+        itemsTable.refresh();
+        for (List list: listsData) {
+            if (list.getListName().equals(listName)){
+                list.setItemsList(itemsData);
+                this.pendingAmount.setText("Pendiente: " + list.getPendingEstimate());
+            }
+        }
+    }
+
+    public void notPendingItem(ActionEvent event){
+        itemsTable.getSelectionModel().getSelectedItem().isNotPending();
+        itemsTable.refresh();
+        for (List list: listsData) {
+            if (list.getListName().equals(listName)){
+                list.setItemsList(itemsData);
+            }
         }
     }
 
